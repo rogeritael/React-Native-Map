@@ -4,7 +4,9 @@ import { View } from 'react-native';
 import {
   requestForegroundPermissionsAsync, //Solicitar permissão para recuperar a localização
   getCurrentPositionAsync, //Obter a localização do usuário
-  LocationObject
+  LocationObject,
+  watchPositionAsync,
+  LocationAccuracy
 } from 'expo-location'
 import MapView, { Marker } from 'react-native-maps';
 
@@ -24,6 +26,17 @@ export default function App() {
 
   useEffect(() => {
     requestLocationPermissions()
+  },[])
+
+  useEffect(() => {
+    watchPositionAsync({
+      accuracy: LocationAccuracy.Highest, // nivel de precisão da localização
+      timeInterval: 1000, // tempo entre as atualizações de localização
+      distanceInterval: 1 // distância mínima (em metros) que deve ser percorrida para gerar uma nova atualização
+    }, (response) => {
+      console.log("Nova Localização", response)
+      setLocation(response)
+    })
   },[])
 
   return (
