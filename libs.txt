@@ -3,5 +3,11 @@ EXPO LOCATION
     >> npx expo install expo-location
 
 MAPVIEW (exibir mapa)
-https://docs.expo.dev/versions/latest/sdk/map-view/
-npx expo install react-native-maps
+    >> https://docs.expo.dev/versions/latest/sdk/map-view/
+    >> npx expo install react-native-maps
+
+MAPS DIRECTIONS
+    >> npm install react-native-maps-directions
+
+HAVERSINE DISTANCE
+    >> npm install haversine-distance
