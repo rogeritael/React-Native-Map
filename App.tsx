@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { styles } from './styles';
 import { View } from 'react-native';
 import {
@@ -10,9 +10,11 @@ import {
 } from 'expo-location'
 import MapView, { Marker } from 'react-native-maps';
 
+
 export default function App() {
   const [location, setLocation] = useState<LocationObject | null>(null)
   const [loading, setLoading] = useState(true)
+  const mapRef = useRef<MapView>(null);
   
   async function requestLocationPermissions(){
     const { granted } = await requestForegroundPermissionsAsync()
@@ -36,6 +38,12 @@ export default function App() {
     }, (response) => {
       console.log("Nova Localização", response)
       setLocation(response)
+      mapRef.current?.animateToRegion({
+        latitude: response.coords.latitude,
+        longitude: response.coords.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+    }, 1000);
     })
   },[])
 
@@ -44,6 +52,7 @@ export default function App() {
       {
         location &&
           <MapView
+            ref={mapRef}
             style={styles.map}
             initialRegion={{
               latitude: location.coords.latitude,
