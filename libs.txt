@@ -1,0 +1,7 @@
+EXPO LOCATION
+    >> https://docs.expo.dev/versions/latest/sdk/location/
+    >> npx expo install expo-location
+
+MAPVIEW (exibir mapa)
+https://docs.expo.dev/versions/latest/sdk/map-view/
+npx expo install react-native-maps
