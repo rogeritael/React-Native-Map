@@ -131,12 +131,15 @@ export default function App() {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
               }}
+              image={require("./assets/user_pin.png")}
+              title="Você"
             />
 
             <Marker
               coordinate={carroLocation}
               pinColor="blue"
-              title="Carro"
+              title="Seu veículo"
+              image={require("./assets/car_pin.png")}
             />
             
             {routeCoordinates.length > 0 && (
@@ -150,5 +153,3 @@ export default function App() {
     </View>
   );
 }
-
-
